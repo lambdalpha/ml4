@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 20 19:40:44 2015
+Created on Sat Nov 21 13:06:04 2015
 
-@author: alpha
+@author: wanghuaq
 """
+
 import numpy as np
 import random
 class LDA(object):
@@ -78,7 +79,7 @@ class LDA(object):
         """ get phi """
         self.phi = self.topic_term + self.beta
         s = np.sum(self.phi, axis=1)
-        self.phi = self.phi / s.reshape(  len(s),1)       
+        self.phi = self.phi / s.reshape(len(s), 1)       
         
     def get_theta(self):
         """ get theta """
