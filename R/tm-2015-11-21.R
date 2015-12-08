@@ -1,5 +1,5 @@
 library(topicmodels)
-data()
+#data()
 library(tm)
 library(wordcloud)
 library(SnowballC)
@@ -7,7 +7,7 @@ library(fpc)
 library(RTextTools)
 library(tm)
 
- data("NYTimes")
+data("NYTimes")
 
 text <- NYTimes
 
@@ -32,7 +32,7 @@ txt.process2 <- function(text) {
   # remove stopwords
   action.corpus <- tm_map(action.corpus, removeWords, stopwords("english"))  
   action.corpus <- tm_map(action.corpus,  removeNumbers)
-  action.corpus.bak <- action.corpus
+  #action.corpus.bak <- action.corpus
   
   # remove extra spaces
   action.corpus <- tm_map(action.corpus, stripWhitespace)
@@ -45,7 +45,7 @@ txt.process2 <- function(text) {
   # stem completion
   #action.corpus <- tm_map(action.corpus, stemCompletion, dictionary=action.corpus.bak)
   action.tdm <- TermDocumentMatrix(action.corpus, control = list(wordLengths=c(3, Inf)))
-  action.dtm <- DocumentTermMatrix(action.corpus, control = list(wordLengths=c(3, Inf)))
+  action.dtm <- as.DocumentTermMatrix(action.tdm)
   action.tdm2 <- removeSparseTerms(action.tdm, sparse = 0.95)
   
   list(corpus=action.corpus, dtm<-action.dtm, tdm=action.tdm, tdm2=action.tdm2)
@@ -61,6 +61,6 @@ lda_inf <- posterior(lda_model, out$tdm)
 
 
 lda_model2 <- LDA(out$tdm2, 20)
-lda_inf2 <- posterior(lda_model, out$tdm2)
+lda_inf2 <- posterior(lda_model2, out$tdm2)
 
 
