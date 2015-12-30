@@ -57,7 +57,8 @@ class LDA(object):
                 self.topic_term[:, n]     -= (self.topic_term[:, n] > 0)
                 self.doc_topic_sum        -= (self.doc_topic_sum > 0)
                 self.topic_term_sum       -= (self.topic_term_sum > 0)
-                
+ 
+               
                 # Gibbs sampling
                 pz = self.conditional_prob(m,n)
                 print(pz)
